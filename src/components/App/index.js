@@ -19,6 +19,7 @@ class App extends Component {
       id: todoId + 1, value: input, crossed: false, checked: false,
     };
     const todos = [...stateTodos, newTodo];
+    localStorage.setItem('todos', JSON.stringify(todos));
     this.setState({
       todos,
       input: '',
@@ -94,7 +95,8 @@ class App extends Component {
   }
 
   render() {
-    const { input, todos } = this.state;
+    const { input } = this.state;
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
     return (
       <div id="app">
         <p>Friday, December 6</p>
