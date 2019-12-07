@@ -105,13 +105,15 @@ class App extends Component {
           <div key={todo.id} className="todo-list">
             <input type="checkbox" checked={todo.checked} onChange={() => this.handleCheckboxChange(todo.id)} />
             <p className={`linethrough-${todo.crossed}`}>{todo.value}</p>
-            <button type="button" className="todo-delete-btn" onClick={() => this.handleDeleteTodo(todo.id)}>X</button>
+            <span className="todo-delete-btn" onClick={() => this.handleDeleteTodo(todo.id)}>X</span>
             <hr />
           </div>
         ))}
-        <button type="button" onClick={this.handleCheckAll}>Check All</button>
-        <button type="button" onClick={this.handleUncheckAll}>Uncheck All</button>
-        <button type="button" onClick={this.handleDeleteAll}>Delete All</button>
+        <div className="todo-all-btn">
+          <button type="button" onClick={this.handleCheckAll}>Check All</button>
+          <button type="button" onClick={this.handleUncheckAll}>Uncheck All</button>
+          <button type="button" onClick={this.handleDeleteAll}>Delete All</button>
+        </div>
       </div>
     );
   }
