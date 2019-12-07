@@ -1,8 +1,75 @@
-#app {
+@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+body {
+  font-family: 'Solway', serif;
   font-size: 1.2em;
   text-align: center;
-  margin: 1em;
+  height: 100vh;
+  background: linear-gradient(120deg, lighten(#e66465, 10%), darken(#9198e5, 10%));
 }
+
+#app {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  padding: 4rem;
+  box-shadow: 3px 3px 5px #656565;
+}
+
+.todo {
+  &-date {
+  font-size: 2em;
+  color: #555;
+  letter-spacing: 2px;
+  margin-bottom: 4rem;
+  }
+  &-input {
+    width: 70%;
+    height: 5vh;
+    padding: 1rem;
+    border: 2px solid #D98B9B;
+    margin-bottom: 3rem;
+
+    &:focus {
+      border: 2px solid #8D7AC7;
+    }
+  }
+  &-btn {
+    width: 30%;
+    height: 5vh;
+    border: none;
+    background: linear-gradient(120deg, lighten(#e66465, 10%), darken(#9198e5, 10%));
+    color: #fff;
+    font-weight: bold;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+  }
+  &-list {
+    display: flex;
+    position: relative;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid lighten(#999, 30%);
+    padding-bottom: 2rem;
+    p {
+      position: absolute;
+      left: 40%;
+    }
+  }
+  &-delete-btn {
+    position: absolute;
+    right: 0;
+    border: none;
+    background: #fff;
+    font-size: 1.5em;
+    color: #999;
+    font-family: 'Lato', sans-serif;
+  }
+}
+
+
 
 .linethrough-true {
   text-decoration: line-through;

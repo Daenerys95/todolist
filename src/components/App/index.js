@@ -96,18 +96,18 @@ class App extends Component {
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
     return (
       <div id="app">
-        <p>Friday, December 6</p>
+        <p className="todo-date">Friday, December 6</p>
         <form id="form" onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Add a todo..." value={input} onChange={this.handleChange} />
-          <button type="submit">Add Todo</button>
+          <input className="todo-input" type="text" placeholder="Add a todo..." value={input} onChange={this.handleChange} required />
+          <button className="todo-btn" type="submit">Add Todo</button>
         </form>
         { todos.map((todo) => (
-          <React.Fragment key={todo.id}>
+          <div key={todo.id} className="todo-list">
             <input type="checkbox" checked={todo.checked} onChange={() => this.handleCheckboxChange(todo.id)} />
             <p className={`linethrough-${todo.crossed}`}>{todo.value}</p>
-            <button type="button" onClick={() => this.handleDeleteTodo(todo.id)}>X</button>
+            <button type="button" className="todo-delete-btn" onClick={() => this.handleDeleteTodo(todo.id)}>X</button>
             <hr />
-          </React.Fragment>
+          </div>
         ))}
         <button type="button" onClick={this.handleCheckAll}>Check All</button>
         <button type="button" onClick={this.handleUncheckAll}>Uncheck All</button>
