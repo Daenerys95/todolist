@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 // == Import : npm
 import React, { Component } from 'react';
 
@@ -14,14 +15,14 @@ class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { todoId, input, todos: stateTodos } = this.state;
+    const { todoId, input } = this.state;
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
     const newTodo = {
       id: todoId + 1, value: input, crossed: false, checked: false,
     };
-    const todos = [...stateTodos, newTodo];
-    localStorage.setItem('todos', JSON.stringify(todos));
+    const addTodos = [...todos, newTodo];
+    localStorage.setItem('todos', JSON.stringify(addTodos));
     this.setState({
-      todos,
       input: '',
       todoId: newTodo.id,
     });
@@ -35,8 +36,7 @@ class App extends Component {
   }
 
   handleCheckboxChange = (id) => {
-    const { todos: stateTodos } = this.state;
-    const todos = [...stateTodos];
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
     const crossedTodo = todos.map((todo) => {
       if (todo.id === id) {
         todo.crossed = !todo.crossed;
@@ -45,28 +45,26 @@ class App extends Component {
       return todo;
     });
     this.setState({
-      todos: crossedTodo,
+      todos: localStorage.setItem('todos', JSON.stringify(crossedTodo)),
     });
   }
 
   handleDeleteTodo = (id) => {
-    const { todos: stateTodos } = this.state;
-    const todos = [...stateTodos];
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
     const filteredTodos = todos.filter((todo) => todo.id !== id);
     this.setState({
-      todos: filteredTodos,
+      todos: localStorage.setItem('todos', JSON.stringify(filteredTodos)),
     });
   }
 
   handleDeleteAll = () => {
     this.setState({
-      todos: [],
+      todos: localStorage.clear(),
     });
   }
 
   handleCheckAll = () => {
-    const { todos: stateTodos } = this.state;
-    const todos = [...stateTodos];
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
     const checkedTodos = todos.map((todo) => {
       if (!todo.checked) {
         todo.checked = true;
@@ -75,14 +73,13 @@ class App extends Component {
       return todo;
     });
     this.setState({
-      todos: checkedTodos,
+      todos: localStorage.setItem('todos', JSON.stringify(checkedTodos)),
     });
   }
 
   handleUncheckAll = () => {
-    const { todos: stateTodos } = this.state;
-    const todos = [...stateTodos];
-    const checkedTodos = todos.map((todo) => {
+    const todos = JSON.parse(localStorage.getItem('todos')) || [];
+    const uncheckedTodos = todos.map((todo) => {
       if (todo.checked) {
         todo.checked = false;
         todo.crossed = false;
@@ -90,7 +87,7 @@ class App extends Component {
       return todo;
     });
     this.setState({
-      todos: checkedTodos,
+      todos: localStorage.setItem('todos', JSON.stringify(uncheckedTodos)),
     });
   }
 
