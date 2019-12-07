@@ -11,6 +11,7 @@ class App extends Component {
     input: '',
     todos: [],
     todoId: 0,
+    date: new Date().toDateString(),
   }
 
   handleSubmit = (e) => {
@@ -92,11 +93,12 @@ class App extends Component {
   }
 
   render() {
-    const { input } = this.state;
+    const { input, date } = this.state;
+    console.log(date)
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
     return (
       <div id="app">
-        <p className="todo-date">Friday, December 6</p>
+        <p className="todo-date">{date}</p>
         <form id="form" onSubmit={this.handleSubmit}>
           <input className="todo-input" type="text" placeholder="Add a todo..." value={input} onChange={this.handleChange} required />
           <button className="todo-btn" type="submit">Add Todo</button>
