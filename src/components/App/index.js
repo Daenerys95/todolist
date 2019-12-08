@@ -94,7 +94,6 @@ class App extends Component {
 
   render() {
     const { input, date } = this.state;
-    console.log(date)
     const todos = JSON.parse(localStorage.getItem('todos')) || [];
     return (
       <div id="app">
